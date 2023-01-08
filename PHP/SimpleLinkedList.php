@@ -24,8 +24,8 @@ class Node
 class SimpleLinkedList
 {
 
-    public Node $head; // The head of the list
-    public Node $tail; // The tail of the list
+    public ?Node $head; // The head of the list
+    public ?Node $tail; // The tail of the list
 
     public function __construct()
     {
@@ -85,20 +85,18 @@ class SimpleLinkedList
     {
 
         $current = $this->head; // Set the current node to the head
-
+        
         while ($current != NULL) { // While the current node is not NULL
-
-            if ($current->value == $value) { // If the current node's value is equal to the value
-
-                return true; // Return true
-
+            
+            if ($current->value === $value) { // If the current node's value is equal to the value
+                return true;
             }
 
             $current = $current->next; // Set the current node to the next node
 
         }
 
-        return false; // Return false
+        return false;
 
     }
 
@@ -124,7 +122,7 @@ class SimpleLinkedList
     public function remove($value)
     {
 
-        $current = $this->head; // Set the current node to the head
+        $current  = $this->head; // Set the current node to the head
         $previous = NULL; // Set the previous node to NULL
 
         while ($current != NULL) { // While the current node is not NULL
@@ -164,7 +162,7 @@ class SimpleLinkedList
     {
 
         $current = $this->head; // Set the current node to the head
-        $string = ""; // Set the string to an empty string
+        $string  = ""; // Set the string to an empty string
 
         while ($current != NULL) { // While the current node is not NULL
 
@@ -177,6 +175,3 @@ class SimpleLinkedList
 
     }
 }
-
-// Implementation
-$linkedList = new SimpleLinkedList(); // Create a new linked list

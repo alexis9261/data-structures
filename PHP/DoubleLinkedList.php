@@ -29,7 +29,11 @@ class DoubleLinkedList {
         $this->tail = NULL; // Set the tail to NULL by default
     }
 
-    public function add($value) {
+    /**
+     * Add a node to the list
+     */
+    public function add($value): void
+    {
         $node = new Node($value); // Create a new node with the value
 
         if ($this->head == NULL) { // If the head is NULL, then the list is empty
@@ -42,7 +46,11 @@ class DoubleLinkedList {
         }
     }
 
-    public function update($value, $newValue) {
+    /**
+     * Update a node in the list
+     */
+    public function update($value, $newValue): void
+    {
         $current = $this->head; // Set the current node to the head
 
         while ($current != NULL) { // While the current node is not NULL
@@ -55,28 +63,67 @@ class DoubleLinkedList {
         }
     }
 
-    public function delete($value) {
-        $current = $this->head;
+    /**
+     * Delete a node from the list
+     */
+    public function delete($value): void
+    {
+        $current = $this->head; // Set the current node to the head
 
-        while ($current != NULL) {
-            if ($current->value == $value) {
-                if ($current->previous != NULL) {
-                    $current->previous->next = $current->next;
+        while ($current != NULL) { // While the current node is not NULL
+            if ($current->value == $value) { // If the current node's value is equal to the value
+                if ($current->previous != NULL) { // If the current node's previous node is not NULL
+                    $current->previous->next = $current->next; // Set the next node of the current node's previous node to the current node's next node
                 } else {
-                    $this->head = $current->next;
+                    $this->head = $current->next; // Set the head to the current node's next node
                 }
 
-                if ($current->next != NULL) {
-                    $current->next->previous = $current->previous;
+                if ($current->next != NULL) { // If the current node's next node is not NULL
+                    $current->next->previous = $current->previous; // Set the previous node of the current node's next node to the current node's previous node
                 } else {
-                    $this->tail = $current->previous;
+                    $this->tail = $current->previous; // Set the tail to the current node's previous node
                 }
 
                 break;
             }
 
-            $current = $current->next;
+            $current = $current->next; // Set the current node to the next node
         }
+    }
+
+    public function print(): void
+    {
+        $current = $this->head; // Set the current node to the head
+
+        while ($current != NULL) { // While the current node is not NULL
+            echo $current->value . " "; // Print the current node's value
+            $current = $current->next; // Set the current node to the next node
+        }
+    }
+
+    public function printReverse(): void
+    {
+        $current = $this->tail; // Set the current node to the tail
+
+        while ($current != NULL) { // While the current node is not NULL
+            echo $current->value . " "; // Print the current node's value
+            $current = $current->previous; // Set the current node to the previous node
+        }
+    }
+
+    public function search(mixed $value): bool
+    {
+        $current = $this->head; // Set the current node to the head
+
+        while ($current != NULL) { // While the current node is not NULL
+            if ($current->value == $value) { // If the current node's value is equal to the value
+                return true; // Return true
+            }
+
+            $current = $current->next; // Set the current node to the next node
+        }
+
+        return false; // Return false
     }
 
 
